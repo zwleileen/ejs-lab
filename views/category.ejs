@@ -10,7 +10,7 @@
   <h1><%= category %></h1>
   <ul>
     <% menuItems.forEach(item => { %>
-        <p><strong><%= item.name %></strong></p>
+        <p><strong><%= item.name %> <%= item.rating ===5 ? '⭐' : '' %></strong></p>
         <li>Price: $<%= item.price %></li>
         <li>Rating: <%= item.rating %></li>
         <li><%= item.details %></li>

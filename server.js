@@ -75,9 +75,10 @@ app.get("/menu/:category", (req, res) => {
   const capitalisedCategory =
     categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
 
-  res.locals.menuItems = menuItems;
-  res.locals.category = capitalisedCategory;
-  res.render("category.ejs");
+  res.render("category.ejs", {
+    menuItems: menuItems,
+    category: capitalisedCategory,
+  });
 });
 
 app.listen(3000);
