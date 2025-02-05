@@ -59,9 +59,25 @@ const RESTAURANT = {
   ],
 };
 
-//Exercise 1: Create a homepage
 app.get("/", (req, res) => {
   res.render("home.ejs", { RESTAURANT });
+});
+
+app.get("/menu", (req, res) => {
+  res.render("menu.ejs", { menu: RESTAURANT.menu });
+});
+
+app.get("/menu/:category", (req, res) => {
+  const categoryName = req.params.category;
+  const menuItems = RESTAURANT.menu.filter(
+    (item) => item.category === categoryName
+  );
+  const capitalisedCategory =
+    categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+
+  res.locals.menuItems = menuItems;
+  res.locals.category = capitalisedCategory;
+  res.render("category.ejs");
 });
 
 app.listen(3000);
